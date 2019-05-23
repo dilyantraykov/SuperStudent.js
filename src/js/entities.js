@@ -1,5 +1,5 @@
-import Entity from 'Entity.js'
-import {loadMarioSprite} from 'sprites.js';
+import Entity from './Entity.js'
+import {loadMarioSprite} from './sprites.js';
 
 export function createMario() {
     return loadMarioSprite()
