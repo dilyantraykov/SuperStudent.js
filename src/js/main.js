@@ -1,9 +1,9 @@
-import Compositor from './Compositor.js';
-import Timer from './Timer.js';
-import {loadLevel} from './loaders.js';
-import {createMario} from './entities.js';
-import {loadBackgroundSprites} from './sprites.js';
-import {createBackgroundLayer, createSpriteLayer} from './layers.js';
+import Compositor from 'Compositor.js';
+import Timer from 'Timer.js';
+import {loadLevel} from 'loaders.js';
+import {createMario} from 'entities.js';
+import {loadBackgroundSprites} from 'sprites.js';
+import {createBackgroundLayer, createSpriteLayer} from 'layers.js';
 
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
