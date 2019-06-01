@@ -1,39 +1,82 @@
-class TileResolver {
-	constructor(matrix, tileSize = 16) {
-		this.matrix = matrix;
-		this.tileSize = tileSize;
-	}
+import TileResolver from './TileResolver.js';
 
-	toIndex(pos) {
-		return Math.floor(pos / this.tileSize);
-	}
 
-	getByIndex(indexX, indexY){
-		const tile = this.matrix.get(indexX, indexY);
-		if(tile){
-			return {
-				tile,
-			};
-		}
-	}
-
-	matchByPosition(posX, posY){
-		return this.getByIndex(
-			this.toIndex(posX),
-			this.toIndex(posY));
-	}
-}
 
 export default class TileCollider {
 	constructor(tileMatrix){
 		this.tiles = new TileResolver(tileMatrix);
 	}
-
-	test(entity){
-		const match = this.tiles.matchByPosition(entity.pos.x, entity.pos.y);
-		if(match){
-			console.log('Matched tile', match, match.tile);
+	
+	checkX(entity)
+	{
+		const matches= this.tiles.searchByRange(
+		entity.pos.x,entity.pos.x+entity.size.x,
+		entity.pos.y, entity.pos.y+entity.size.y
+		);
+		
+		matches.forEach(match=>{
+				
+		if(match.tile.name!=='ground')
+		{
+			return;
 		}
 		
+		if(entity.vel.x>0)
+		{
+			if(entity.pos.x + entity.size.x>match.x1)
+			{
+				entity.pos.x=match.x1-entity.size.x;
+				entity.vel.x=0;
+			}
+		}
+		else if(entity.vel.x<0)
+		{
+			if(entity.pos.x <match.x2)
+			{
+				entity.pos.x=match.x2;
+				entity.vel.x=0;
+			}
+		}
+		});	
+		
+	}
+	
+	checkY(entity)
+	{
+		const matches= this.tiles.searchByRange(
+		entity.pos.x,entity.pos.x+entity.size.x,
+		entity.pos.y, entity.pos.y+entity.size.y
+		);
+		
+		matches.forEach(match=>{
+				
+		if(match.tile.name!=='ground')
+		{
+			return;
+		}
+		
+		if(entity.vel.y>0)
+		{
+			if(entity.pos.y + entity.size.y>match.y1)
+			{
+				entity.pos.y=match.y1-entity.size.y;
+				entity.vel.y=0;
+			}
+		}
+		else if(entity.vel.y<0)
+		{
+			if(entity.pos.y <match.y2)
+			{
+				entity.pos.y=match.y2;
+				entity.vel.y=0;
+			}
+		}
+		});	
+		
+	}
+
+	test(entity)
+	{
+		this.checkY(entity);
 	}
 }
