@@ -14,7 +14,7 @@ export function setupKeyboard(entity)
     });
 	
 	 input.addMapping('ArrowRight', keyState => {
-        entity.go.dir=keyState;		
+        entity.go.dir=keyState;	
     });
 	
 	 input.addMapping('ArrowLeft', keyState => {

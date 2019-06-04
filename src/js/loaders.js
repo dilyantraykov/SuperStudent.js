@@ -1,5 +1,6 @@
 import Level from './Level.js';
 import SpriteSheet from './SpriteSheet.js';
+import {createAnim} from './anim.js';
 import {createBackgroundLayer, createSpriteLayer} from './layers.js';
 
 export function loadImage(url) {
@@ -14,7 +15,7 @@ export function loadImage(url) {
 
 function loadJSON(url) {
 	return fetch(url)
-	.then(r => r.json())
+	.then(r => r.json());
 }
 
 function createTiles(level, backgrounds){
@@ -37,7 +38,7 @@ function createTiles(level, backgrounds){
 				const [xStart, xLen, yStart, yLen] = range;
 				applyRange(background, xStart, xLen, yStart, yLen);
 			} else if (range.length === 3) {
-				const [xStart, yStart] = range;
+				const [xStart, xLen, yStart] = range;
 				applyRange(background, xStart, xLen, yStart, 1);
 			} else if (range.length === 2) {
 				const [xStart, yStart] = range;
@@ -47,27 +48,42 @@ function createTiles(level, backgrounds){
     });
 }
 
-function loadSpriteSheet(name) {
-	return loadJSON(`./sprites/${name}.json`)
-	.then(sheetSpec => Promise.all([
-		sheetSpec,
-		loadImage(sheetSpec.imageURL),
-	]))
-	.then(([sheetSpec, image]) => {
-		const sprites = new SpriteSheet(
-			image, 
-			sheetSpec.tileW, 
-			sheetSpec.tileH);
+export function loadSpriteSheet(name) {
+    return loadJSON(`./sprites/${name}.json`)
+    .then(sheetSpec => Promise.all([
+        sheetSpec,
+        loadImage(sheetSpec.imageURL),
+    ]))
+    .then(([sheetSpec, image]) => {
+        const sprites = new SpriteSheet(
+            image,
+            sheetSpec.tileW,
+            sheetSpec.tileH);
 
-		sheetSpec.tiles.forEach(tileSpec => {
-			sprites.defineTile(
-				tileSpec.name, 
-				tileSpec.index[0],
-				tileSpec.index[1]);
-		});
-		
-		return sprites;
-	});
+        if (sheetSpec.tiles) {
+            sheetSpec.tiles.forEach(tileSpec => {
+                sprites.defineTile(
+                    tileSpec.name,
+                    tileSpec.index[0],
+                    tileSpec.index[1]);
+            });
+        }
+
+        if (sheetSpec.frames) {
+            sheetSpec.frames.forEach(frameSpec => {
+                sprites.define(frameSpec.name, ...frameSpec.rect);
+            });
+        }
+
+        /*if (sheetSpec.animations) {
+            sheetSpec.animations.forEach(animSpec => {
+                const animation = createAnim(animSpec.frames, animSpec.frameLen);
+                sprites.defineAnim(animSpec.name, animation);
+            });
+        }*/
+
+        return sprites;
+    });
 }
 
 export function loadLevel(name) {
