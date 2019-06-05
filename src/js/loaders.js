@@ -75,12 +75,12 @@ export function loadSpriteSheet(name) {
             });
         }
 
-        /*if (sheetSpec.animations) {
+        if (sheetSpec.animations) {
             sheetSpec.animations.forEach(animSpec => {
                 const animation = createAnim(animSpec.frames, animSpec.frameLen);
                 sprites.defineAnim(animSpec.name, animation);
             });
-        }*/
+        }
 
         return sprites;
     });

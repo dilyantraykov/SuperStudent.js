@@ -8,7 +8,7 @@ export default class SpriteSheet {
     }
 
     defineAnim(name, animation) {
-        this.animations.set(name, animation);
+        this.animation.set(name, animation);
     }
 
     define(name, x, y, width, height) {
@@ -51,7 +51,7 @@ export default class SpriteSheet {
     }
 
     drawAnim(name, context, x, y, distance) {
-        const animation = this.animations.get(name);
+        const animation = this.animation.get(name);
         this.drawTile(animation(distance), context, x, y);
     }
 
