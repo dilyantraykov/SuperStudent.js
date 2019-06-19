@@ -12,7 +12,7 @@ Promise.all([
     loadEntities(),
     loadLevel('1.1'),
 ])
-.then(([entity, level]) => {
+.then(([factory, level]) => {
 	const camera = new Camera();
     window.camera = camera;
 
