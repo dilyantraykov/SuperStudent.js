@@ -26,7 +26,7 @@ export default class Level{
 			
 			entity.pos.y += entity.vel.y * deltaTime;
 			this.tileCollider.checkY(entity);
-			this.tileCollider.test(entity);
+			
 			
 			entity.vel.y += this.gravity * deltaTime;
 		});

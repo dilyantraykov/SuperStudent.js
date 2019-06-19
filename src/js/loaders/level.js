@@ -105,7 +105,7 @@ function expandTiles(tiles, patterns){
                         tile,
                         x: derivedX,
                         y: derivedY,
-                    })
+                    });
                 }
             }
         }
