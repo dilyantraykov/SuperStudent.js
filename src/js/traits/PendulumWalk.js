@@ -3,6 +3,7 @@ import { Trait, Sides } from '../Entity.js';
 export default class PendulumWalk extends Trait {
     constructor() {
         super('pendulumWalk');
+		this.enabled=true;
         this.speed = -30;
     }
     obstruct(entity, side) {
@@ -12,6 +13,9 @@ export default class PendulumWalk extends Trait {
     }
 
     update(entity, deltaTime) {
+		if(this.enabled)
+		{
         entity.vel.x = this.speed;
+		}
     }
 }
