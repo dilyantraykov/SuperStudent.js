@@ -1,0 +1,10 @@
+{
+    "imageURL": "./images/tileset.png",
+  
+    "frames": [
+      {
+        "name": "coin",
+        "rect": [ 384, 16, 16, 16 ]
+      }
+    ]
+  }
