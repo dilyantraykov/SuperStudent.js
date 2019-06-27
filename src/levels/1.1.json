@@ -359,7 +359,7 @@
     "entities": [
         {
             "name": "koopa",
-            "pos": [260, 0]
+            "pos": [560, 0]
         },
         {
             "name": "goomba",
@@ -367,7 +367,59 @@
         },
         {
             "name": "coin",
-            "pos": [180, 200]
+            "pos": [430, 0]
+        },
+        {
+            "name": "koopa",
+            "pos": [680, 0]
+        },
+        {
+            "name": "goomba",
+            "pos": [780, 0]
+        },
+        {
+            "name": "coin",
+            "pos": [800, 0]
+        },
+        {
+            "name": "koopa",
+            "pos": [1000, 0]
+        },
+        {
+            "name": "goomba",
+            "pos": [1220, 0]
+        },
+        {
+            "name": "coin",
+            "pos": [1380, 0]
+        },
+        {
+            "name": "koopa",
+            "pos": [2260, 0]
+        },
+        {
+            "name": "goomba",
+            "pos": [2220, 0]
+        },
+        {
+            "name": "coin",
+            "pos": [2120, 0]
+        },
+        {
+            "name": "coin",
+            "pos": [2680, 0]
+        },
+        {
+            "name": "koopa",
+            "pos": [2860, 0]
+        },
+        {
+            "name": "goomba",
+            "pos": [2720, 0]
+        },
+        {
+            "name": "coin",
+            "pos": [3180, 200]
         }
     ]
 }
